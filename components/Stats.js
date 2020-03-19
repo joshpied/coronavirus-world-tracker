@@ -1,40 +1,59 @@
 import styled from 'styled-components';
+import CountUp from 'react-countup';
+
 import useStats from '../utils/useStats';
 
 const StatGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-rows: auto;
   grid-gap: 1rem;
 `;
 const StatBlock = styled.div`
-  background: #f2f2f2;
+  background: ${props => props.background};
+  color: #fff;
   font-size: 2rem;
   padding: 2rem;
-  border-radius: 2rem;
-  display: grid;
-  align-items: center;
-  justify-items: center;
-  text-align: center;
+  border-radius: 5px;
+`;
+const StatTitle = styled.h6`
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  color: #fff;
+  margin-bottom: 0;
+`;
+const StatValue = styled.h2`
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  color: #fff;
+  margin-top: 5px;
 `;
 
 export default function Stats({ url }) {
   const { stats, loading, error } = useStats(url);
-  console.log(stats, loading, error);
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error...</p>;
+
+  // console.log(stats, loading, error);
+  if (loading) return <p style={{ color: '#fff' }}>Loading...</p>;
+  if (error) return <p style={{ color: '#fff' }}>Error...</p>;
   return (
     <StatGrid>
-      <StatBlock>
-        <h3>Confirmed:</h3>
-        <span>{stats.confirmed.value}</span>
+      <StatBlock background="#17a2b8">
+        <StatTitle>Confirmed</StatTitle>
+        <StatValue>
+          <CountUp end={stats?.confirmed?.value} separator="," />
+        </StatValue>
       </StatBlock>
-      <StatBlock>
-        <h3>Deaths:</h3>
-        <span>{stats.deaths.value}</span>
+      <StatBlock background="#dc3545">
+        <StatTitle className="title">Deceased</StatTitle>
+        <StatValue>
+          <CountUp end={stats?.deaths?.value} separator="," />
+        </StatValue>
       </StatBlock>
-      <StatBlock>
-        <h3>Recovered:</h3>
-        <span>{stats.recovered.value}</span>
+      <StatBlock background="#2AA744">
+        <StatTitle className="title">Recovered</StatTitle>
+        <StatValue>
+          <CountUp end={stats?.recovered?.value} separator="," />
+        </StatValue>
       </StatBlock>
     </StatGrid>
   );

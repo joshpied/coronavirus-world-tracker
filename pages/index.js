@@ -1,20 +1,44 @@
-import { createGlobalStyle } from 'styled-components';
-import useStats from '../utils/useStats';
-import Stats from '../components/Stats';
-import CountrySelector from '../components/CountrySelector';
+import styled from 'styled-components';
 
-const GlobalStyle = createGlobalStyle`
-  html {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+import useStats from '../utils/useStats';
+import Layout from '../components/Layout';
+import Stats from '../components/Stats';
+import WorldStatsPieChart from '../components/WorldStatsPieChart';
+
+const WorldStats = styled.main`
+  margin-left: 5%;
+  margin-right: 5%;
+`;
+
+const WorldCharts = styled.div`
+  margin-top: 1em;
+  display: flex;
+  justify-content: space-evenly;
+
+  @media screen and (max-width: 1049px) {
+    flex-direction: column;
   }
 `;
 
 export default function IndexPage() {
   return (
-    <div>
-      <GlobalStyle />
-      <Stats url="https://covid19.mathdro.id/api"></Stats>
-      <CountrySelector></CountrySelector>
-    </div>
+    <Layout>
+      <WorldStats>
+        <h2 className="title">Worldwide</h2>
+        <Stats url="https://covid19.mathdro.id/api"></Stats>
+        <WorldCharts>
+          <WorldStatsPieChart
+            url="https://covid19.mathdro.id/api/confirmed"
+            stat="confirmed"
+            title="Cases Breakdown"
+          ></WorldStatsPieChart>
+          <WorldStatsPieChart
+            url="https://covid19.mathdro.id/api/deaths"
+            stat="deaths"
+            title="Deceased Breakdown"
+          ></WorldStatsPieChart>
+        </WorldCharts>
+      </WorldStats>
+    </Layout>
   );
 }
