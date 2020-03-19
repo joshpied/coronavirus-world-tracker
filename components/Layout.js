@@ -101,7 +101,7 @@ export default function Layout(props) {
               </Link>
             </li>
             <li>
-              <Link href="/countrystats">
+              <Link href="/CountryStats">
                 <a>country</a>
               </Link>
             </li>

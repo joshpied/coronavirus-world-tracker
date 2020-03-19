@@ -29,7 +29,7 @@ function formatStats(countries, stat) {
 }
 
 const StatsPieChart = styled.div`
-  height: 33%;
+  height: 100%;
   width: 45%;
   border: 1px solid #fff;
   border-radius: 0.5em;
@@ -40,7 +40,7 @@ const StatsPieChart = styled.div`
   }
 
   @media screen and (max-width: 1049px) {
-    height: 100%;
+    // height: 100%;
     width: 100%;
   }
 `;
@@ -56,7 +56,7 @@ export default function Stats({ url, stat, title }) {
   };
 
   const options = {
-    // maintainAspectRatio: true
+    maintainAspectRatio: true,
     legend: {
       display: true
     }
@@ -68,7 +68,7 @@ export default function Stats({ url, stat, title }) {
     <StatsPieChart>
       <h3 className="title hover-underline-animation">{title}</h3>
       {/* width={300} height={300} */}
-      <Pie data={pieData} options={options} responsive={true} />
+      <Pie data={pieData} height={190} options={options} responsive={true} />
     </StatsPieChart>
   );
 }
