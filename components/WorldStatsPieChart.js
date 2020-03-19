@@ -48,7 +48,7 @@ const StatsPieChart = styled.div`
 export default function Stats({ url, stat, title }) {
   const { stats, loading, error } = useStats(url);
   const { labels, data } = formatStats(stats, stat);
-  const backgroundColor = randomColorGenerator;
+  const backgroundColor = ['#416788','#A20021','#F5853F','#EDEDF4','#69DC9E','#E59F71','#372772','#3A2449','#e8670c','#b64510'];
 
   const pieData = {
     labels,
@@ -68,7 +68,7 @@ export default function Stats({ url, stat, title }) {
     <StatsPieChart>
       <h3 className="title hover-underline-animation">{title}</h3>
       {/* width={300} height={300} */}
-      <Pie data={pieData} height={190} options={options} responsive={true} />
+      <Pie data={pieData} height={270} options={options} responsive={true} />
     </StatsPieChart>
   );
 }
