@@ -1,5 +1,5 @@
 {
-  "name": "rona",
+  "name": "coronavirus-world-tracker",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start"
   },
-  "author": "",
+  "author": "Josh Piedimonte",
   "license": "ISC",
   "dependencies": {
     "chart.js": "^2.9.3",
