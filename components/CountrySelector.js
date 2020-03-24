@@ -5,7 +5,6 @@ import useStats from '../utils/useStats';
 import Stats from './Stats';
 
 export default function CountrySelector() {
-  
   const { stats: countries, loading, error } = useStats(
     'https://covid19.mathdro.id/api/countries'
   );
@@ -23,40 +22,42 @@ export default function CountrySelector() {
     }
   `;
 
-  const [selectedCountry, setSelectedCountry] = useState('Italy');
+  const [selectedCountry, setSelectedCountry] = useState({
+    name: 'Italy',
+    iso2: 'IT'
+  });
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error...</p>;
 
-  
   return (
     <div>
       <CountrySelectorHeader>
         <div>
-          <h2 className="title">Stats for {selectedCountry} </h2>
+          <h2 className="title">Stats for {selectedCountry.name} </h2>
           <img
-            src={`https://www.countryflags.io/${countries.countries[selectedCountry]}/flat/32.png`}
+            src={`https://www.countryflags.io/${selectedCountry.iso2}/flat/32.png`}
           />
         </div>
 
         <select
           onChange={e => {
-            setSelectedCountry(e.target.value);
+            setSelectedCountry(countries.countries[e.target.value]);
           }}
         >
-          {Object.entries(countries.countries).map(([country, code]) => (
+          {countries.countries.map((country, i) => (
             <option
-              selected={selectedCountry === country}
-              key={country}
-              value={country}
+              selected={selectedCountry.name === country.name}
+              key={country.ios2}
+              value={i}
             >
-              {country}
+              {country.name}
             </option>
           ))}
         </select>
       </CountrySelectorHeader>
       <Stats
         url={encodeURI(
-          `https://covid19.mathdro.id/api/countries/${selectedCountry}`
+          `https://covid19.mathdro.id/api/countries/${selectedCountry.name}`
         )}
       ></Stats>
     </div>

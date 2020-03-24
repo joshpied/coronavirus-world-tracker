@@ -90,7 +90,6 @@ export default function Layout(props) {
         />
       </Head>
       <GlobalStyle />
-      {/* <Header /> */}
       <header>
         <h1>COVID-19 Tracker</h1>
         <nav role="navigation">
