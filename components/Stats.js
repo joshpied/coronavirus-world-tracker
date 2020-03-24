@@ -3,22 +3,27 @@ import CountUp from 'react-countup';
 
 import useStats from '../utils/useStats';
 
+// styled components
 const StatGrid = styled.div`
   display: flex;
-  justify-content: space-evenly;
-  // display: grid;
-  // grid-template-columns: repeat(3, 33%);
-  // repeat(auto-fit, minmax(240px, 1fr));
-  // grid-template-rows: auto;
-  // grid-gap: 1rem;
+  justify-content: space-between;
+
+  @media screen and (max-width: 696px) {
+    flex-direction: column;
+    text-align: center;
+  }
 `;
 const StatBlock = styled.div`
-  width: 27%;
+  width: 28%;
   background: ${props => props.background};
   color: #fff;
   font-size: 2rem;
   padding: 2rem;
   border-radius: 5px;
+
+  @media screen and (max-width: 696px) {
+    width: auto;
+  }
 `;
 const StatTitle = styled.h6`
   font-size: 1vw;
@@ -27,6 +32,10 @@ const StatTitle = styled.h6`
   color: #fff;
   margin-top: 5px;
   margin-bottom: 0;
+
+  @media screen and (max-width: 696px) {
+    font-size: 2vw;
+  }
 `;
 const StatValue = styled.h2`
   font-size: 2.5vw;
@@ -35,6 +44,10 @@ const StatValue = styled.h2`
   color: #fff;
   margin-top: 5px;
   margin-bottom: 5px;
+
+  @media screen and (max-width: 696px) {
+    font-size: 5vw;
+  }
 `;
 
 export default function Stats({ url }) {
