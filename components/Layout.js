@@ -37,7 +37,7 @@ const GlobalStyle = createGlobalStyle`
           text-transform: uppercase;
           letter-spacing: 5px;
           padding: 1.25rem 0.5rem;
-          font-size: 1.6rem;
+          font-size: calc(0.95em + 1vmin);
           font-weight: bold;
           text-decoration: none;
           display: flex;
@@ -100,13 +100,13 @@ export default function Layout(props) {
               </Link>
             </li>
             <li>
-              <Link href="/CountryStats">
+              <Link href="/country">
                 <a>country</a>
               </Link>
             </li>
             {/* <li>
-              <Link href="/map">
-                <a>map</a>
+              <Link href="/compare">
+                <a>compare</a>
               </Link>
             </li> */}
           </ul>
