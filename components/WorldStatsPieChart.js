@@ -14,11 +14,15 @@ function formatStats(countries, stat) {
     else formattedObj[countries[i].countryRegion] = countries[i][stat];
   }
 
+  const entries = Object.entries(formattedObj); // switch object back to array to sort it
+  const sorted = entries.sort((a, b) => b[1] - a[1]); // now an array of array key-value pairs that is sorted by value descending
+  const sortedObj = Object.fromEntries(sorted); // convert back to object to be further formatted
+
   // get top 10 cases in their own arrays
-  const labels = Object.keys(formattedObj).slice(0, 10);
-  const data = Object.values(formattedObj).slice(0, 10);
+  const labels = Object.keys(sortedObj).slice(0, 10);
+  const data = Object.values(sortedObj).slice(0, 10);
   // get total of all values outside of the top 10 cases
-  const bottomValues = Object.values(formattedObj).slice(10);
+  const bottomValues = Object.values(sortedObj).slice(10);
   const reducer = (accumulator, currentValue) => accumulator + currentValue;
   const bottomTotal = bottomValues.reduce(reducer, 0);
   // add to labels and values -> there is now 11 each labels and values
@@ -48,7 +52,18 @@ const StatsPieChart = styled.div`
 export default function Stats({ url, stat, title }) {
   const { stats, loading, error } = useStats(url);
   const { labels, data } = formatStats(stats, stat);
-  const backgroundColor = ['#416788','#A20021','#F5853F','#EDEDF4','#69DC9E','#E59F71','#372772','#3A2449','#e8670c','#b64510'];
+  const backgroundColor = [
+    '#416788',
+    '#A20021',
+    '#F5853F',
+    '#EDEDF4',
+    '#69DC9E',
+    '#E59F71',
+    '#e8670c',
+    '#372772',
+    '#3A2449',
+    '#b64510'
+  ];
 
   const pieData = {
     labels,
