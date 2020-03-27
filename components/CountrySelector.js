@@ -11,7 +11,7 @@ export default function CountrySelector() {
   );
 
   const countryOptions = countries?.countries.map((country, i) => ({
-    label: country.name,
+    label: country.name === 'US' ? 'United States of America' : country.name,
     value: i
   }));
 
