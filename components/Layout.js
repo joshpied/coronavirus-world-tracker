@@ -104,11 +104,11 @@ export default function Layout(props) {
                 <a>country</a>
               </Link>
             </li>
-            {/* <li>
+            <li>
               <Link href="/compare">
                 <a>compare</a>
               </Link>
-            </li> */}
+            </li>
           </ul>
         </nav>
       </header>

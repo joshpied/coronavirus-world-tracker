@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import useStats from '../utils/useStats';
-import { randomColorGenerator } from '../helpers';
 import { Pie } from 'react-chartjs-2';
 
 function formatStats(countries, stat) {
@@ -14,6 +13,7 @@ function formatStats(countries, stat) {
     else formattedObj[countries[i].countryRegion] = countries[i][stat];
   }
 
+  // sort countries descending
   const entries = Object.entries(formattedObj); // switch object back to array to sort it
   const sorted = entries.sort((a, b) => b[1] - a[1]); // now an array of array key-value pairs that is sorted by value descending
   const sortedObj = Object.fromEntries(sorted); // convert back to object to be further formatted

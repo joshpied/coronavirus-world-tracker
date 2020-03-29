@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-
+import ComparisonLineChart from '../components/ComparisonLineChart';
 import Layout from '../components/Layout';
 
 const CountryComparison = styled.main`
@@ -10,7 +10,18 @@ const CountryComparison = styled.main`
 export default function ComparePage(props) {
   return (
     <Layout>
-      <CountryComparison>comprarrrreee</CountryComparison>
+      <CountryComparison>
+        <ComparisonLineChart
+          url="https://coronavirus-world-api.now.sh/api/time-series/confirmed/new"
+          stat="confirmed/new"
+          title="Confirmed New Cases"
+        ></ComparisonLineChart>
+        <ComparisonLineChart
+            url="https://coronavirus-world-api.now.sh/api/time-series/confirmed"
+            stat="confirmed"
+            title="Confirmed Total Cases"
+          ></ComparisonLineChart>
+      </CountryComparison>
     </Layout>
   );
 }
