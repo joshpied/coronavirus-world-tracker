@@ -12,10 +12,11 @@ export default function ComparisonLineChart({ url, stat, title }) {
     const labels = Object.keys(countries['China'].dates);
 
     const coupleCountries = {
-      US: countries['US'],
+      USA: countries['US'],
       Canada: countries['Canada'],
       China: countries['China'],
-      Italy: countries['Italy']
+      Italy: countries['Italy'],
+      Spain: countries['Spain']
     };
 
     const datasets = Object.keys(coupleCountries).map((key, index) => ({
