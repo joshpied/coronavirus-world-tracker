@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 
 import { createGlobalStyle } from 'styled-components';
+
 const GlobalStyle = createGlobalStyle`
   html {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -9,14 +10,22 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     background: #2b2a2a;
+    margin: 0;
   }
 
 	header {
-    margin-left: 5%;
-    margin-right: 5%;
+    margin: 0;
+    padding-left: 5%;
+    padding-right: 5%;
 		display: flex;
 		justify-content: space-between;
 		align-self: center;
+    /* frosted glass background */
+    background-color: rgba(43, 42, 42, .15);   
+    backdrop-filter: blur(25px);
+    /* stick nav */
+    position: sticky;
+    top: 0;
 
 		h1 {
 			text-transform: uppercase;
@@ -42,7 +51,7 @@ const GlobalStyle = createGlobalStyle`
           text-decoration: none;
           display: flex;
           align-items: flex-start;
-          color: #949090;
+          color: #dedddd;
           &:hover, &:focus {
             color: #fff;
             text-shadow: 0 5px 15px rgba(145, 92, 182, .4);
@@ -80,6 +89,14 @@ export default function Layout(props) {
         <meta charSet="utf-8" />
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <link href="../static/images/favicon.ico" rel="icon" />
+        <link rel="apple-touch-icon" href="/static/icon.png" />
+        <meta
+          name="apple-mobile-web-app-title"
+          content="Coronavirus World Tracker"
+        />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="mobile-web-app-capable" content="yes" />
         <link
           href="https://api.tiles.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css"
           rel="stylesheet"
