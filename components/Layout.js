@@ -20,7 +20,7 @@ const GlobalStyle = createGlobalStyle`
 		display: flex;
 		justify-content: space-between;
 		align-self: center;
-    /* frosted glass background */
+    /* frosted glass background, doesn't work in firefox */
     background-color: rgba(43, 42, 42, .15);   
     backdrop-filter: blur(25px);
     /* stick nav */

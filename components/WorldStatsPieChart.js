@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import useStats from '../utils/useStats';
 import { Pie } from 'react-chartjs-2';
+import { default_colors } from '../helpers';
 
 function formatStats(countries, stat) {
   let formattedObj = {};
@@ -44,7 +45,6 @@ const StatsPieChart = styled.div`
   }
 
   @media screen and (max-width: 1049px) {
-    // height: 100%;
     width: 100%;
   }
 `;
@@ -52,18 +52,7 @@ const StatsPieChart = styled.div`
 export default function Stats({ url, stat, title }) {
   const { stats, loading, error } = useStats(url);
   const { labels, data } = formatStats(stats, stat);
-  const backgroundColor = [
-    '#416788',
-    '#A20021',
-    '#F5853F',
-    '#EDEDF4',
-    '#69DC9E',
-    '#E59F71',
-    '#e8670c',
-    '#372772',
-    '#3A2449',
-    '#b64510'
-  ];
+  const backgroundColor = [...default_colors];
 
   const pieData = {
     labels,

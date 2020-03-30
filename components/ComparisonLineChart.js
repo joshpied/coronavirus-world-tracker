@@ -16,7 +16,11 @@ export default function ComparisonLineChart({ url, stat, title }) {
       Canada: countries['Canada'],
       China: countries['China'],
       Italy: countries['Italy'],
-      Spain: countries['Spain']
+      Spain: countries['Spain'],
+      UK: countries['United Kingdom'],
+      France: countries['France'],
+      Germany: countries['Germany'],
+      Iran: countries['Iran']
     };
 
     const datasets = Object.keys(coupleCountries).map((key, index) => ({
