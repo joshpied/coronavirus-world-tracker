@@ -21,11 +21,14 @@ const GlobalStyle = createGlobalStyle`
 		justify-content: space-between;
 		align-self: center;
     /* frosted glass background, doesn't work in firefox */
-    background-color: rgba(43, 42, 42, .15);   
-    backdrop-filter: blur(25px);
-    /* stick nav */
-    position: sticky;
-    top: 0;
+    @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) { 
+      background-color: rgba(43, 42, 42, .15);   
+      backdrop-filter: blur(25px);
+          /* stick nav */
+      position: sticky;
+      top: 0;
+    }
+    
 
 		h1 {
 			text-transform: uppercase;
