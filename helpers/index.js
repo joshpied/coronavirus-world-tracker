@@ -23,6 +23,9 @@ export function formatNumber(number) {
   return new Intl.NumberFormat().format(number);
 }
 
+/**
+ * Colors for charts
+ */
 export const default_colors = [
   '#3366CC',
   '#DC3912',

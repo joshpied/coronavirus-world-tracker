@@ -50,6 +50,8 @@ const StatValue = styled.h2`
   }
 `;
 
+const x = 3;
+
 export default function Stats({ url }) {
   const { stats, loading, error } = useStats(url);
 

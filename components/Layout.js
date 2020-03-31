@@ -67,6 +67,23 @@ const GlobalStyle = createGlobalStyle`
 		}
   }
 
+  footer {
+    margin: 1.5em 5% 1.5em 5%;
+    a {
+      color: #dedddd;
+      text-decoration: none;
+      &:hover, &:focus {
+        color: #fff;
+        text-shadow: 0 5px 15px rgba(145, 92, 182, .4);
+      }
+    }
+
+    span.year {
+      color: #fff;
+    }
+
+  }
+
 	@media screen and (max-width: 696px) {
     header {
       flex-direction: column;
@@ -91,7 +108,7 @@ export default function Layout(props) {
         <title>Coronavirus World Tracker</title>
         <meta charSet="utf-8" />
         <meta content="width=device-width, initial-scale=1" name="viewport" />
-        <link href="../static/images/favicon.ico" rel="icon" />
+        <link href="/images/favicon.ico" rel="icon" />
         <link rel="apple-touch-icon" href="/static/icon.png" />
         <meta
           name="apple-mobile-web-app-title"
@@ -133,6 +150,16 @@ export default function Layout(props) {
         </nav>
       </header>
       {props.children}
+      <footer className="text-light">
+        <a
+          href="https://github.com/joshpied"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Josh Piedimonte
+        </a>{' '}
+        <span className="year">{new Date().getFullYear()}</span>
+      </footer>
     </>
   );
 }
