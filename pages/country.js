@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import Layout from '../components/Layout';
-import CountrySelector from '../components/CountrySelector';
+import CountrySelector from '../components/country/CountrySelector';
 
 const CountryStats = styled.main`
   margin-left: 5%;

@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import CountUp from 'react-countup';
+import useData from '../../utils/useData';
 
-import useStats from '../utils/useStats';
+import CountryLineChart from './CountryLineChart';
 
 // styled components
 const StatGrid = styled.div`
@@ -51,31 +52,32 @@ const StatValue = styled.h2`
 `;
 
 export default function Stats({ url }) {
-  const { stats, loading, error } = useStats(url);
-
-  // console.log(stats, loading, error);
+  const { data, loading, error } = useData(url);
   if (loading) return <p style={{ color: '#fff' }}>Loading...</p>;
   if (error) return <p style={{ color: '#fff' }}>Error...</p>;
   return (
-    <StatGrid>
-      <StatBlock background="#17a2b8">
-        <StatTitle>Confirmed</StatTitle>
-        <StatValue>
-          <CountUp end={stats?.confirmed?.value} separator="," />
-        </StatValue>
-      </StatBlock>
-      <StatBlock background="#dc3545">
-        <StatTitle className="title">Deceased</StatTitle>
-        <StatValue>
-          <CountUp end={stats?.deaths?.value} separator="," />
-        </StatValue>
-      </StatBlock>
-      <StatBlock background="#2AA744">
-        <StatTitle className="title">Recovered</StatTitle>
-        <StatValue>
-          <CountUp end={stats?.recovered?.value} separator="," />
-        </StatValue>
-      </StatBlock>
-    </StatGrid>
+    <>
+      <StatGrid>
+        <StatBlock background="#17a2b8">
+          <StatTitle>Confirmed</StatTitle>
+          <StatValue>
+            <CountUp end={data?.country?.stats?.confirmed} separator="," />
+          </StatValue>
+        </StatBlock>
+        <StatBlock background="#dc3545">
+          <StatTitle className="title">Deceased</StatTitle>
+          <StatValue>
+            <CountUp end={data?.country?.stats?.deceased} separator="," />
+          </StatValue>
+        </StatBlock>
+        <StatBlock background="#2AA744">
+          <StatTitle className="title">Recovered</StatTitle>
+          <StatValue>
+            <CountUp end={data?.country?.stats?.recovered} separator="," />
+          </StatValue>
+        </StatBlock>
+      </StatGrid>
+      <CountryLineChart country={data?.country}></CountryLineChart>
+    </>
   );
 }

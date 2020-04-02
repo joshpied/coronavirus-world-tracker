@@ -2,8 +2,8 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import AsyncSelect from 'react-select/async';
 
-import useStats from '../utils/useStats';
-import Stats from './Stats';
+import useStats from '../../utils/useStats';
+import CountryStats from './CountryStats';
 
 export default function CountrySelector() {
   const { stats: countries, loading, error } = useStats(
@@ -59,8 +59,8 @@ export default function CountrySelector() {
     iso2: 'IT'
   });
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error...</p>;
+  if (loading) return <p style={{ color: '#fff' }}>Loading...</p>;
+  if (error) return <p style={{ color: '#fff' }}>Error...</p>;
 
   const customStyles = {
     valueContainer: (provided, state) => ({
@@ -117,11 +117,11 @@ export default function CountrySelector() {
           }}
         />
       </CountrySelectContainer>
-      <Stats
+      <CountryStats
         url={encodeURI(
-          `https://covid19.mathdro.id/api/countries/${selectedCountry.name}`
+          `https://coronavirus-world-api.now.sh/api/countries/${selectedCountry.iso2}?detailed=true`
         )}
-      ></Stats>
+      ></CountryStats>
     </div>
   );
 }
