@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import CountUp from 'react-countup';
 import useData from '../../utils/useData';
 
-import CountryLineChart from './CountryLineChart';
+import CountryBarChart from './CountryBarChart';
 
 // styled components
 const StatGrid = styled.div`
@@ -77,7 +77,7 @@ export default function Stats({ url }) {
           </StatValue>
         </StatBlock>
       </StatGrid>
-      <CountryLineChart country={data?.country}></CountryLineChart>
+      <CountryBarChart country={data?.country}></CountryBarChart>
     </>
   );
 }

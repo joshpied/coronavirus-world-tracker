@@ -90,6 +90,7 @@ const GlobalStyle = createGlobalStyle`
 
 			h1 {
 				text-align: center;
+        margin-bottom: 0;
       }
 		}
 	}
