@@ -85,6 +85,11 @@ export default function Header() {
               <a>compare</a>
             </Link>
           </li>
+          <li>
+            <Link href="/map">
+              <a>map</a>
+            </Link>
+          </li>
         </ul>
       </nav>
     </HeaderContainer>

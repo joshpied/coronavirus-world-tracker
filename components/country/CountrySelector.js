@@ -119,7 +119,7 @@ export default function CountrySelector() {
       </CountrySelectContainer>
       <CountryStats
         url={encodeURI(
-          `https://coronavirus-world-api.now.sh/api/countries/${selectedCountry.iso2}?detailed=true`
+          `https://coronavirus-world-api.now.sh/api/country/${selectedCountry.iso2}?detailed=true`
         )}
       ></CountryStats>
     </div>

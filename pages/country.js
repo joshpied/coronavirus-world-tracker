@@ -3,17 +3,17 @@ import styled from 'styled-components';
 import Layout from '../components/Layout';
 import CountrySelector from '../components/country/CountrySelector';
 
-const CountryStats = styled.main`
+const Country = styled.main`
   margin-left: 5%;
   margin-right: 5%;
 `;
 
-export default function IndexPage() {
+export default function CountryPage() {
   return (
     <Layout>
-      <CountryStats>
+      <Country>
         <CountrySelector></CountrySelector>
-      </CountryStats>
+      </Country>
     </Layout>
   );
 }
