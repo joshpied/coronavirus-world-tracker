@@ -12,12 +12,12 @@ export default function ComparePage(props) {
     <Layout>
       <CountryComparison>
         <ComparisonLineChart
-          url="https://coronavirus-world-api.now.sh/api/time-series/confirmed/new"
+          url="https://coronavirus-world-api.now.sh/api/countries/time-series/confirmed/new"
           stat="confirmed/new"
           title="Confirmed New Cases"
         ></ComparisonLineChart>
         <ComparisonLineChart
-            url="https://coronavirus-world-api.now.sh/api/time-series/confirmed"
+            url="https://coronavirus-world-api.now.sh/api/countries/time-series/confirmed"
             stat="confirmed"
             title="Confirmed Total Cases"
           ></ComparisonLineChart>

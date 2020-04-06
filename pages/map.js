@@ -25,7 +25,7 @@ export default function MapPage() {
   });
 
   const { data, loading, error } = useData(
-    'https://coronavirus-world-api.now.sh/api/time-series/confirmed'
+    'https://coronavirus-world-api.now.sh/api/countries/time-series/confirmed'
   );
 
   const geojson = {
