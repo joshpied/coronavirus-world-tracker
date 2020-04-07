@@ -85,11 +85,11 @@ export default function Header() {
               <a>compare</a>
             </Link>
           </li>
-          {/* <li>
+          <li>
             <Link href="/map">
               <a>map</a>
             </Link>
-          </li> */}
+          </li>
         </ul>
       </nav>
     </HeaderContainer>

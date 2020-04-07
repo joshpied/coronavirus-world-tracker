@@ -17,10 +17,10 @@ export default function ComparePage(props) {
           title="Confirmed New Cases"
         ></ComparisonLineChart>
         <ComparisonLineChart
-            url="https://coronavirus-world-api.now.sh/api/countries/time-series/confirmed"
-            stat="confirmed"
-            title="Confirmed Total Cases"
-          ></ComparisonLineChart>
+          url="https://coronavirus-world-api.now.sh/api/countries/time-series/confirmed"
+          stat="confirmed"
+          title="Confirmed Total Cases"
+        ></ComparisonLineChart>
       </CountryComparison>
     </Layout>
   );

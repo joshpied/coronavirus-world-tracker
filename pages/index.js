@@ -24,7 +24,6 @@ const WorldCharts = styled.div`
 export default function IndexPage() {
   return (
     <Layout>
-      {/* <ComparisonLineChart></ComparisonLineChart> */}
       <WorldStats>
         <h2 className="title">Worldwide</h2>
         <Stats url="https://covid19.mathdro.id/api"></Stats>
