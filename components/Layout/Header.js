@@ -36,7 +36,7 @@ const HeaderContainer = styled.header`
         text-transform: uppercase;
         letter-spacing: 5px;
         padding: 1.25rem 0.5rem;
-        font-size: calc(0.75em + 1vmin);
+        font-size: calc(0.75em + 2vmin);
         font-weight: bold;
         text-decoration: none;
         display: flex;
@@ -60,6 +60,15 @@ const HeaderContainer = styled.header`
     h1 {
       text-align: center;
       margin-bottom: 0;
+    }
+
+    nav {
+      ul {
+        a {
+          font-size: 2.5vmin;
+           /* 0.7em; */
+        }
+      }
     }
   }
 `;
