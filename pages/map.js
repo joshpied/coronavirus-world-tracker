@@ -3,6 +3,7 @@ import useData from '../utils/useData';
 import styled from 'styled-components';
 import MapGL, { Source, Layer } from 'react-map-gl';
 import Layout from '../components/Layout';
+import Loading from '../components/shared/Loading';
 
 const Map = styled.main`
   margin-left: 5%;
@@ -49,7 +50,7 @@ export default function MapPage() {
     return geoJson;
   };
 
-  if (loading) return <p style={{ color: '#fff' }}>Loading...</p>;
+  if (loading) return <Loading></Loading>;
   if (error) return <p> style={{ color: '#fff' }}Error...</p>;
 
   const circleLayer = {

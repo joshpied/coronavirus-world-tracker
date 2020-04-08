@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import useStats from '../utils/useStats';
 import { Pie } from 'react-chartjs-2';
 import { default_colors } from '../helpers';
+import Loading from './shared/Loading';
 
 function formatStats(countries, stat) {
   let formattedObj = {};
@@ -56,17 +57,17 @@ export default function Stats({ url, stat, title }) {
 
   const pieData = {
     labels,
-    datasets: [{ data, backgroundColor }]
+    datasets: [{ data, backgroundColor }],
   };
 
   const options = {
     maintainAspectRatio: true,
     legend: {
-      display: true
-    }
+      display: true,
+    },
   };
 
-  if (loading) return <p style={{ color: '#fff' }}>Loading...</p>;
+  if (loading) return <Loading></Loading>;
   if (error) return <p> style={{ color: '#fff' }}Error...</p>;
   return (
     <StatsPieChart>

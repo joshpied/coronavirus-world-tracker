@@ -3,6 +3,7 @@ import CountUp from 'react-countup';
 import useData from '../../utils/useData';
 
 import CountryBarChart from './CountryBarChart';
+import Loading from '../shared/Loading';
 
 // styled components
 const StatGrid = styled.div`
@@ -61,7 +62,7 @@ const NoCountryData = styled.h4`
 
 export default function Stats({ url }) {
   const { data, loading, error } = useData(url);
-  if (loading) return <p style={{ color: '#fff' }}>Loading...</p>;
+  if (loading) return <Loading></Loading>;
   if (error) return <p style={{ color: '#fff' }}>Error...</p>;
   if (data.success) {
     return (

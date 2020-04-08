@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import useStats from '../utils/useStats';
 import { Line } from 'react-chartjs-2';
 import { default_colors } from '../helpers';
+import Loading from '../components/shared/Loading';
 
 const ComparisonLineChartContainer = styled.div``;
 
@@ -20,7 +21,7 @@ export default function ComparisonLineChart({ url, stat, title }) {
       UK: countries['United Kingdom'],
       France: countries['France'],
       Germany: countries['Germany'],
-      Iran: countries['Iran']
+      Iran: countries['Iran'],
     };
 
     const datasets = Object.keys(coupleCountries).map((key, index) => ({
@@ -28,18 +29,18 @@ export default function ComparisonLineChart({ url, stat, title }) {
       data: Object.values(coupleCountries[key].dates),
       fill: false,
       backgroundColor: default_colors[index],
-      borderColor: default_colors[index]
+      borderColor: default_colors[index],
     }));
 
     const data = {
       labels,
-      datasets
+      datasets,
     };
 
     return data;
   };
 
-  if (loading) return <p style={{ color: '#fff' }}>Loading...</p>;
+  if (loading) return <Loading></Loading>;
   if (error) return <p> style={{ color: '#fff' }}Error...</p>;
   return (
     <ComparisonLineChartContainer>

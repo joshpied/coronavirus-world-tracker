@@ -2,10 +2,12 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import AsyncSelect from 'react-select/async';
 
+import Loading from '../shared/Loading';
 import useData from '../../utils/useData';
 import CountryStats from './CountryStats';
 
 export default function CountrySelector() {
+  
   const { data, loading, error } = useData(
     'https://coronavirus-world-api.now.sh/api/country'
   );
@@ -92,7 +94,7 @@ export default function CountrySelector() {
     })
   };
 
-  if (loading) return <p style={{ color: '#fff' }}>Loading...</p>;
+  if (loading) return <Loading></Loading>;
   if (error) return <p style={{ color: '#fff' }}>Error...</p>;
 
   return (

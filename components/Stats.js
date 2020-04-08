@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import CountUp from 'react-countup';
 
 import useStats from '../utils/useStats';
+import Loading from './shared/Loading';
 
 // styled components
 const StatGrid = styled.div`
@@ -53,8 +54,7 @@ const StatValue = styled.h2`
 export default function Stats({ url }) {
   const { stats, loading, error } = useStats(url);
 
-  // console.log(stats, loading, error);
-  if (loading) return <p style={{ color: '#fff' }}>Loading...</p>;
+  if (loading) return <Loading></Loading>;
   if (error) return <p style={{ color: '#fff' }}>Error...</p>;
   return (
     <StatGrid>

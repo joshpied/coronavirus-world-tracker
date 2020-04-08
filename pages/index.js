@@ -5,6 +5,7 @@ import Layout from '../components/Layout';
 import Stats from '../components/Stats';
 import WorldStatsPieChart from '../components/WorldStatsPieChart';
 import ComparisonLineChart from '../components/ComparisonLineChart';
+import Loading from '../components/shared/Loading';
 
 const WorldStats = styled.main`
   margin-left: 5%;
