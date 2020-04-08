@@ -2,15 +2,15 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import AsyncSelect from 'react-select/async';
 
-import useStats from '../../utils/useStats';
+import useData from '../../utils/useData';
 import CountryStats from './CountryStats';
 
 export default function CountrySelector() {
-  const { stats: countries, loading, error } = useStats(
-    'https://covid19.mathdro.id/api/countries'
+  const { data, loading, error } = useData(
+    'https://coronavirus-world-api.now.sh/api/country'
   );
 
-  const countryOptions = countries?.countries.map((country, i) => ({
+  const countryOptions = data?.countries.map((country, i) => ({
     label: country.name === 'US' ? 'United States of America' : country.name,
     value: i
   }));
@@ -51,16 +51,13 @@ export default function CountrySelector() {
   `;
 
   const setCountry = e => {
-    setSelectedCountry(countries.countries[e.value]);
+    setSelectedCountry(data.countries[e.value]);
   };
 
   const [selectedCountry, setSelectedCountry] = useState({
     name: 'Italy',
-    iso2: 'IT'
+    code: 'IT'
   });
-
-  if (loading) return <p style={{ color: '#fff' }}>Loading...</p>;
-  if (error) return <p style={{ color: '#fff' }}>Error...</p>;
 
   const customStyles = {
     valueContainer: (provided, state) => ({
@@ -95,13 +92,16 @@ export default function CountrySelector() {
     })
   };
 
+  if (loading) return <p style={{ color: '#fff' }}>Loading...</p>;
+  if (error) return <p style={{ color: '#fff' }}>Error...</p>;
+
   return (
-    <div>
+    <>
       <CountrySelectorHeader>
         <div>
           <h2 className="title">Stats for {selectedCountry.name} </h2>
           <img
-            src={`https://www.countryflags.io/${selectedCountry.iso2}/flat/32.png`}
+            src={`https://www.countryflags.io/${selectedCountry.code}/flat/32.png`}
           />
         </div>
       </CountrySelectorHeader>
@@ -119,9 +119,9 @@ export default function CountrySelector() {
       </CountrySelectContainer>
       <CountryStats
         url={encodeURI(
-          `https://coronavirus-world-api.now.sh/api/country/${selectedCountry.iso2}?detailed=true`
+          `https://coronavirus-world-api.now.sh/api/country/${selectedCountry.code}?detailed=true`
         )}
       ></CountryStats>
-    </div>
+    </>
   );
 }

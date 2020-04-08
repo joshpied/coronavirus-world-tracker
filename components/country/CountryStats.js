@@ -50,34 +50,48 @@ const StatValue = styled.h2`
     font-size: 5vw;
   }
 `;
+const NoCountryData = styled.h4`
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  color: #fff;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  text-align: center;
+`;
 
 export default function Stats({ url }) {
   const { data, loading, error } = useData(url);
   if (loading) return <p style={{ color: '#fff' }}>Loading...</p>;
   if (error) return <p style={{ color: '#fff' }}>Error...</p>;
-  return (
-    <>
-      <StatGrid>
-        <StatBlock background="#17a2b8">
-          <StatTitle>Confirmed</StatTitle>
-          <StatValue>
-            <CountUp end={data?.country?.stats?.confirmed} separator="," />
-          </StatValue>
-        </StatBlock>
-        <StatBlock background="#dc3545">
-          <StatTitle className="title">Deceased</StatTitle>
-          <StatValue>
-            <CountUp end={data?.country?.stats?.deceased} separator="," />
-          </StatValue>
-        </StatBlock>
-        <StatBlock background="#2AA744">
-          <StatTitle className="title">Recovered</StatTitle>
-          <StatValue>
-            <CountUp end={data?.country?.stats?.recovered} separator="," />
-          </StatValue>
-        </StatBlock>
-      </StatGrid>
-      <CountryBarChart country={data?.country}></CountryBarChart>
-    </>
-  );
+  if (data.success) {
+    return (
+      <>
+        <StatGrid>
+          <StatBlock background="#17a2b8">
+            <StatTitle>Confirmed</StatTitle>
+            <StatValue>
+              <CountUp end={data.country.stats.confirmed} separator="," />
+            </StatValue>
+          </StatBlock>
+          <StatBlock background="#dc3545">
+            <StatTitle className="title">Deceased</StatTitle>
+            <StatValue>
+              <CountUp end={data.country.stats.deceased} separator="," />
+            </StatValue>
+          </StatBlock>
+          <StatBlock background="#2AA744">
+            <StatTitle className="title">Recovered</StatTitle>
+            <StatValue>
+              <CountUp end={data.country.stats.recovered} separator="," />
+            </StatValue>
+          </StatBlock>
+        </StatGrid>
+        <CountryBarChart country={data.country}></CountryBarChart>
+      </>
+    );
+  } else {
+    return (
+      <NoCountryData style={{ color: '#fff' }}>{data.message}</NoCountryData>
+    );
+  }
 }

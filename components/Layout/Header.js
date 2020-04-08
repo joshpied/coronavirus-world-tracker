@@ -36,7 +36,7 @@ const HeaderContainer = styled.header`
         text-transform: uppercase;
         letter-spacing: 5px;
         padding: 1.25rem 0.5rem;
-        font-size: calc(0.75em + 2vmin);
+        font-size: calc(0.75em + 1.5vmin);
         font-weight: bold;
         text-decoration: none;
         display: flex;
@@ -66,7 +66,6 @@ const HeaderContainer = styled.header`
       ul {
         a {
           font-size: 2.5vmin;
-           /* 0.7em; */
         }
       }
     }
