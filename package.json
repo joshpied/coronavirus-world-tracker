@@ -13,6 +13,7 @@
   "dependencies": {
     "chart.js": "^2.9.3",
     "dotenv": "^8.2.0",
+    "mapbox-gl": "^1.9.1",
     "next": "^9.3.0",
     "normalize.css": "^8.0.1",
     "react": "^16.13.0",
