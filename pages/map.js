@@ -1,7 +1,12 @@
+import dynamic from 'next/dynamic';
+const Map = dynamic(() => import('../components/Map'), {
+  ssr: false
+});
+
 import styled from 'styled-components';
 
 import Layout from '../components/Layout';
-import Map from '../components/map';
+// import Map from '../components/map';
 
 const MapContainer = styled.main`
   margin-left: 5%;

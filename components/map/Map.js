@@ -106,6 +106,7 @@ export default function Map(props) {
     },
     interactive: true
   };
+
   return (
     <MapGL
       {...state.viewport}
