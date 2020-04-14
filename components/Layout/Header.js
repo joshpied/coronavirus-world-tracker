@@ -8,6 +8,8 @@ const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-self: center;
+  z-index: 2; /* keep header on top for map */
+  
   /* frosted glass background, doesn't work in firefox */
   @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
     background-color: rgba(43, 42, 42, 0.15);

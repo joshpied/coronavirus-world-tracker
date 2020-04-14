@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const LoadingContainer = styled.div`
+  margin-top: 3em;
   display: flex;
   justify-content: center;
   align-items: center;

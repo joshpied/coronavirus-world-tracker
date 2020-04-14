@@ -6,11 +6,9 @@ import Loading from '../shared/Loading';
 export default function Map(props) {
   const [state, setState] = useState({
     viewport: {
-      width: 400,
-      height: 400,
-      latitude: 34.885931,
-      longitude: -29.369202,
-      zoom: 1
+      latitude: 29.37702905115463,
+      longitude: 6.999861180100723,
+      zoom: 1.13
     }
   });
 
@@ -111,7 +109,7 @@ export default function Map(props) {
     <MapGL
       {...state.viewport}
       width="100%"
-      height="80vh"
+      height="70vh"
       mapStyle="mapbox://styles/mapbox/dark-v9"
       onViewportChange={(newViewport) =>
         setState({ ...state, viewport: newViewport })
