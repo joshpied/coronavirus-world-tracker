@@ -62,12 +62,14 @@ const HeaderContainer = styled.header`
     h1 {
       text-align: center;
       margin-bottom: 0;
+      font-size: calc(0.75em + 1.5vmin);
     }
 
     nav {
       ul {
         a {
-          font-size: 2.5vmin;
+          font-size: 3.5vmin;
+          letter-spacing: 3px;
         }
       }
     }
