@@ -5,19 +5,21 @@ import Header from './Header';
 import Footer from './Footer';
 
 const GlobalStyle = createGlobalStyle`
+  :root {
+    --red: #dc3545;
+    --blue: #17a2b8;
+    --green: #2AA744;
+    --white: #fff;
+    --black: #2b2a2a;
+  }
+
   html {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
 
   body {
-    background: #2b2a2a;
+    background: var(--black);
     margin: 0;
-  }
-
-  :root {
-    --red: #dc3545;
-    --blue: #17a2b8;
-    --green: #2AA744;
   }
 
   .title {

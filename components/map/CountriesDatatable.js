@@ -3,6 +3,12 @@ import styled from 'styled-components';
 
 const TableContainer = styled.div`
   overflow-x: auto;
+
+  h2 {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--white);
+  }
 `;
 
 const Table = styled.table`
@@ -11,7 +17,7 @@ const Table = styled.table`
   /* border-collapse: collapse; */
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: white;
+  color: var(--white);
 
   th {
     text-align: left;
@@ -48,15 +54,86 @@ const Table = styled.table`
   }
 `;
 
+const Pagination = styled.div`
+  display: flex;
+	justify-content: center;
+	align-items: center;
+`;
+
+const CurrentPage = styled.span`
+  color: var(--white);
+	font-size: 1.2em;
+	/* margin-top: 7px; */
+  @media screen and (min-width: 1300px) {
+    display: none;
+  }
+`;
+
+const PageNumbers = styled.ul`
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  color: var(--white);
+  font-size: 1.2em;
+
+  li {
+    margin-left: 1em;
+    margin-right: 1em;
+    user-select: none;
+    cursor: pointer;
+  }
+
+  li.active {
+    border-bottom: 1px solid var(--white);
+  }
+
+  @media screen and (max-width: 1300px) {
+    li {
+      display: none;
+    }
+  }
+`;
+
+const DecreasePagination = styled.button`
+  cursor: pointer;
+  color: var(--white);
+  background: var(--black);
+  border: none;
+  outline: none;
+  font-size: 1em;
+  &:disabled {
+    color: grey;
+    cursor: not-allowed;
+  }
+`;
+
+const IncreasePagination = styled.button`
+  cursor: pointer;
+  color: var(--white);
+  background: var(--black);
+  border: none;
+  outline: none;
+  font-size: 1em;
+  &:disabled {
+    color: grey;
+    cursor: not-allowed;
+  }
+`;
+
 const AscendingArrow = () => <span>&#8593;</span>;
 const DescendingArrow = () => <span>&#8595;</span>;
 
 export default function CountriesDatatable({ data }) {
-  // console.log(data);}
   const countries = [...data];
+  const { lastUpdated } = countries[0].stats;
   const [selectedSort, setSelectedSort] = useState({
     prop: 'name',
     direction: 'descending'
+  });
+  const [pagination, setPagination] = useState({
+    currentPage: 1,
+    itemsPerPage: 10
   });
 
   const sortCountries = ({ prop, direction }) => {
@@ -100,10 +177,52 @@ export default function CountriesDatatable({ data }) {
     else setSelectedSort({ prop, direction: 'descending' });
   };
 
+  const handlePagination = (e) => {
+    setPagination({ currentPage: Number(event.target.id), itemsPerPage: 10 });
+  };
+  const stepPagination = (e, step) => {
+    if (step === 'decrement')
+      setPagination({
+        currentPage: --pagination.currentPage,
+        itemsPerPage: 10
+      });
+    if (step === 'increment')
+      setPagination({
+        currentPage: ++pagination.currentPage,
+        itemsPerPage: 10
+      });
+  };
   sortCountries(selectedSort);
+
+  const indexOfLastItem = pagination.currentPage * pagination.itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - pagination.itemsPerPage;
+  const currentCountries = countries.slice(indexOfFirstItem, indexOfLastItem);
+  const pageNumbers = [];
+  for (
+    let i = 1;
+    i <= Math.ceil(countries.length / pagination.itemsPerPage);
+    i++
+  ) {
+    pageNumbers.push(i);
+  }
+  const renderPageNumbers = pageNumbers.map((number) => {
+    return (
+      <li
+        key={number}
+        id={number}
+        className={number === pagination.currentPage ? 'active' : ''}
+        onClick={(e) => {
+          handlePagination(e);
+        }}
+      >
+        {number}
+      </li>
+    );
+  });
 
   return (
     <TableContainer>
+      <h2>Last Update: {lastUpdated}</h2>
       <Table>
         <thead>
           <tr>
@@ -131,7 +250,7 @@ export default function CountriesDatatable({ data }) {
           </tr>
         </thead>
         <tbody>
-          {countries.map((val, i) => (
+          {currentCountries.map((val, i) => (
             <tr key={`${i}_${val}`}>
               {/* <td>{i}</td> */}
               <td className="country">
@@ -149,6 +268,22 @@ export default function CountriesDatatable({ data }) {
           ))}
         </tbody>
       </Table>
+      <Pagination>
+        <DecreasePagination
+          onClick={(e) => stepPagination(e, 'decrement')}
+          disabled={pagination.currentPage === 1}
+        >
+          {'<'}
+        </DecreasePagination>
+        <PageNumbers>{renderPageNumbers}</PageNumbers>
+        <CurrentPage>{pagination.currentPage}</CurrentPage>
+        <IncreasePagination
+          onClick={(e) => stepPagination(e, 'increment')}
+          disabled={pagination.currentPage === pageNumbers.length}
+        >
+          {'>'}
+        </IncreasePagination>
+      </Pagination>
     </TableContainer>
   );
 }
