@@ -14,6 +14,12 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
   }
 
+  :root {
+    --red: #dc3545;
+    --blue: #17a2b8;
+    --green: #2AA744;
+  }
+
   .title {
     text-transform: uppercase;
     letter-spacing: 5px;
