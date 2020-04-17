@@ -19,6 +19,7 @@ export default function MapPage() {
   );
 
   if (error) return <p style={{ color: '#fff' }}>Error...</p>;
+  // TODO: pass this data into the map component as well (don't have to get it twice)
   if (loading)
     return (
       <Layout>

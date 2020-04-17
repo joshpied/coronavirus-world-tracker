@@ -101,7 +101,7 @@ export default function CountrySelector() {
     <>
       <CountrySelectorHeader>
         <div>
-          <h2 className="title">Stats for {selectedCountry.name} </h2>
+          <h3 className="title">Stats for {selectedCountry.name} </h3>
           <img
             src={`https://www.countryflags.io/${selectedCountry.code}/flat/32.png`}
           />

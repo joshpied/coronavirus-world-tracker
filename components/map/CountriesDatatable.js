@@ -14,7 +14,7 @@ const TableContainer = styled.div`
 const Table = styled.table`
   margin: 1em 0 1em 0;
   width: 100%;
-  /* border-collapse: collapse; */
+  border-collapse: collapse;
   text-transform: uppercase;
   letter-spacing: 2px;
   color: var(--white);
@@ -23,6 +23,7 @@ const Table = styled.table`
     text-align: left;
     cursor: pointer;
     user-select: none;
+    font-size: 0.75em;
   }
 
   th:not(.name_header) {
@@ -39,7 +40,11 @@ const Table = styled.table`
 
   th.recovered_header {
     background: var(--green);
-  }
+	}
+	
+	td {
+		/* font-size: 0.85em; */
+	}
 
   td.country {
     display: flex;
@@ -62,6 +67,8 @@ const Pagination = styled.div`
 
 /* Shows on small displays */
 const CurrentPage = styled.span`
+  margin-left: 1em;
+  margin-right: 1em;
   color: var(--white);
   font-size: 1.2em;
   border-bottom: 1px solid var(--white);
@@ -170,8 +177,8 @@ export default function CountriesDatatable({ data }) {
 
   const handlePagination = (e) => {
     setPagination({ currentPage: Number(event.target.id), itemsPerPage: 10 });
-	};
-	
+  };
+
   const indexOfLastItem = pagination.currentPage * pagination.itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - pagination.itemsPerPage;
   const currentCountries = countries.slice(indexOfFirstItem, indexOfLastItem);
@@ -182,8 +189,8 @@ export default function CountriesDatatable({ data }) {
     i++
   ) {
     pageNumbers.push(i);
-	}
-	
+  }
+
   const stepPagination = (e, step) => {
     if (step === 'start')
       setPagination({
