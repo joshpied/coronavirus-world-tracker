@@ -48,7 +48,7 @@ const HeaderContainer = styled.header`
         img {
           filter: invert(100%) sepia(0%) saturate(7443%) hue-rotate(65deg)
             brightness(112%) contrast(73%);
-          margin-right: 4px;
+          margin-right: 6px;
         }
         &:hover,
         &:focus {
@@ -93,6 +93,9 @@ const HeaderContainer = styled.header`
           flex-direction: column;
           font-size: 3.5vmin;
           letter-spacing: 3px;
+          img{
+            margin-right: 0;
+          }
         }
       }
     }
