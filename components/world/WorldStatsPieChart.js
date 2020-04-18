@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import useStats from '../utils/useStats';
+import useStats from '../../utils/useStats';
 import { Pie } from 'react-chartjs-2';
-import { default_colors } from '../helpers';
-import Loading from './shared/Loading';
+import { default_colors } from '../../helpers';
+import Loading from '../shared/Loading';
 
 function formatStats(countries, stat) {
   let formattedObj = {};
