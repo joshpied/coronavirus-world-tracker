@@ -46,7 +46,7 @@ export default function Layout(props) {
         <meta charSet="utf-8" />
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <link href="/images/favicon.ico" rel="icon" />
-        <link rel="apple-touch-icon" href="/static/icon.png" />
+        <link rel="apple-touch-icon" href="/images/icon.png" />
         <meta
           name="apple-mobile-web-app-title"
           content="Coronavirus World Tracker"
