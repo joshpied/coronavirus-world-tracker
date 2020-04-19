@@ -44,6 +44,7 @@ const HeaderContainer = styled.header`
         font-weight: bold;
         text-decoration: none;
         color: #dedddd;
+
         /* filter color for #fff */
         img {
           filter: invert(100%) sepia(0%) saturate(7443%) hue-rotate(65deg)
@@ -93,7 +94,7 @@ const HeaderContainer = styled.header`
           flex-direction: column;
           font-size: 3.5vmin;
           letter-spacing: 3px;
-          img{
+          img {
             margin-right: 0;
           }
         }
