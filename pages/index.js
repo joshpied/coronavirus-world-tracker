@@ -46,7 +46,6 @@ export default function IndexPage() {
           title="Deceased Breakdown"
         ></WorldStatsPieChart>
       </WorldChartsContainer>
-
       <CountriesDatatable data={data.countries}></CountriesDatatable>
     </WorldContainer>
   );

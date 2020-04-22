@@ -19,6 +19,7 @@
     "prefer-const": "error",
     "no-use-before-define": "error",
     "prefer-arrow-callback": "error",
-    "no-implicit-globals": "error"
+    "no-implicit-globals": "error",
+    "arrow-parens": ["error", "as-needed"]
   }
 }
