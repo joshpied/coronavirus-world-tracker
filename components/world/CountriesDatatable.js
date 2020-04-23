@@ -18,7 +18,6 @@ const Table = styled.table`
     text-align: left;
     cursor: pointer;
     user-select: none;
-    font-size: 0.75em;
   }
 
   th:not(.name_header) {
@@ -37,8 +36,35 @@ const Table = styled.table`
     background: var(--green);
   }
 
+  .header {
+    display: flex;
+    align-items: center;
+  }
+
+  .header-icon {
+    width: 16px;
+    height: 16px;
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(179deg)
+      brightness(107%) contrast(101%);
+  }
+
+  .header-name {
+    font-size: 16px;
+    margin-left: 0.5em;
+  }
+
+  th:not(.name_header) .header-name {
+    @media screen and (max-width: 750px) {
+      display: none;
+    }
+  }
+
+  .header-arrow {
+    font-size: 16px;
+  }
+
   td {
-    /* font-size: 0.85em; */
+    font-size: 0.95em;
   }
 
   td.country {
@@ -84,6 +110,8 @@ const TableSearch = styled.input`
     background: #333333;
     border: 1px solid #2684ff;
   }
+  -webkit-appearance: none;
+  -webkit-border-radius: 2px;
 
   @media screen and (max-width: 500px) {
     width: 100%;
@@ -283,25 +311,41 @@ export default function CountriesDatatable({ data }) {
       <Table>
         <thead>
           <tr>
-            {['name', 'confirmed', 'deceased', 'recovered'].map((val, i) => (
+            {[
+              { name: 'name' },
+              { name: 'confirmed', icon: '/images/icons/check-circle.svg' },
+              { name: 'deceased', icon: '/images/icons/ribbon.svg' },
+              { name: 'recovered', icon: '/images/icons/activity.svg' }
+            ].map((val, i) => (
               <th
-                className={`${val}_header`}
-                key={`${i}_${val}`}
+                className={`${val.name}_header`}
+                key={`${i}_${val.name}`}
                 width="25%"
                 onClick={e => {
-                  setSort(e, val);
+                  setSort(e, val.name);
                 }}
               >
-                {val === 'name' ? 'Country' : val}{' '}
-                {selectedSort.prop === val ? (
-                  selectedSort.direction === 'ascending' ? (
-                    <AscendingArrow />
+                <div className="header">
+                  {val?.icon ? (
+                    <img className="header-icon" src={val.icon} />
                   ) : (
-                    <DescendingArrow />
-                  )
-                ) : (
-                  ''
-                )}
+                    ''
+                  )}
+                  <span className="header-name">
+                    {val.name === 'name' ? 'Country' : val.name}
+                  </span>
+                  <span className="header-arrow">
+                    {selectedSort.prop === val.name ? (
+                      selectedSort.direction === 'ascending' ? (
+                        <AscendingArrow />
+                      ) : (
+                        <DescendingArrow />
+                      )
+                    ) : (
+                      ''
+                    )}
+                  </span>
+                </div>
               </th>
             ))}
           </tr>
@@ -343,14 +387,12 @@ export default function CountriesDatatable({ data }) {
         >
           {'<'}
         </PaginateArrow>
-        {/* <PageNumbers>{renderPageNumbers}</PageNumbers> */}
         <PageNumbers>
           {pageNumbers.map(number => (
             <PageNumber
               key={number}
               id={number}
               isActive={number === pagination.currentPage}
-              // className={number === pagination.currentPage ? 'active' : ''}
               onClick={e => {
                 handlePagination(e);
               }}

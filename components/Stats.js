@@ -4,14 +4,12 @@ import CountUp from 'react-countup';
 import useStats from '../utils/useStats';
 import Loading from './shared/Loading';
 
-// styled components
 const StatGrid = styled.div`
   display: flex;
   justify-content: space-between;
 
   @media screen and (max-width: 696px) {
     flex-direction: column;
-    text-align: center;
   }
 `;
 const StatBlock = styled.div`
@@ -26,19 +24,34 @@ const StatBlock = styled.div`
     width: auto;
   }
 `;
-const StatTitle = styled.h6`
-  font-size: 1vw;
+const StatTitle = styled.div`
+  display: flex;
+  align-items: center;
+`;
+const StatIcon = styled.img`
+  width: 1.5vw;
+  height: 1.5vw;
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(179deg)
+    brightness(107%) contrast(101%);
+
+  @media screen and (max-width: 696px) {
+    display: none;
+  }
+`;
+const StatName = styled.h6`
+  font-size: 1.5vw;
   text-transform: uppercase;
   letter-spacing: 5px;
   color: #fff;
-  margin-top: 5px;
-  margin-bottom: 0;
+  margin: 0 auto 0 5px;
 
   @media screen and (max-width: 696px) {
     font-size: 2vw;
   }
 `;
 const StatValue = styled.h2`
+  display: flex;
+  align-items: center;
   font-size: 2.5vw;
   text-transform: uppercase;
   letter-spacing: 5px;
@@ -50,6 +63,18 @@ const StatValue = styled.h2`
     font-size: 5vw;
   }
 `;
+const StatValueIcon = styled.img`
+  display: none;
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(179deg)
+    brightness(107%) contrast(101%);
+
+  @media screen and (max-width: 696px) {
+    display: flex;
+    width: 5vw;
+    height: 5vw;
+    margin-right: 5px;
+  }
+`;
 
 export default function Stats({ url }) {
   const { stats, loading, error } = useStats(url);
@@ -59,20 +84,32 @@ export default function Stats({ url }) {
   return (
     <StatGrid>
       <StatBlock background="#17a2b8">
-        <StatTitle>Confirmed</StatTitle>
+        <StatTitle>
+          <StatIcon src="images/icons/check-circle.svg" />
+          <StatName>Confirmed</StatName>
+        </StatTitle>
         <StatValue>
+          <StatValueIcon src="images/icons/check-circle.svg" />
           <CountUp end={stats?.confirmed?.value} separator="," />
         </StatValue>
       </StatBlock>
       <StatBlock background="#dc3545">
-        <StatTitle className="title">Deceased</StatTitle>
+        <StatTitle>
+          <StatIcon src="images/icons/ribbon.svg" />
+          <StatName className="title">Deceased</StatName>
+        </StatTitle>
         <StatValue>
+          <StatValueIcon src="images/icons/ribbon.svg" />
           <CountUp end={stats?.deaths?.value} separator="," />
         </StatValue>
       </StatBlock>
       <StatBlock background="#2AA744">
-        <StatTitle className="title">Recovered</StatTitle>
+        <StatTitle>
+          <StatIcon src="images/icons/activity.svg" />
+          <StatName className="title">Recovered</StatName>
+        </StatTitle>
         <StatValue>
+          <StatValueIcon src="images/icons/activity.svg" />
           <CountUp end={stats?.recovered?.value} separator="," />
         </StatValue>
       </StatBlock>
