@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import useData from '../utils/useData';
-import Stats from '../components/Stats';
+import Stats from '../components/shared/Stats';
 import CountriesDatatable from '../components/world/CountriesDatatable';
 import WorldStatsPieChart from '../components/world/WorldStatsPieChart';
 import Loading from '../components/shared/Loading';
@@ -22,18 +22,25 @@ const WorldChartsContainer = styled.div`
 `;
 
 export default function IndexPage() {
-  const { data, loading, error } = useData(
-    'https://coronavirus-world-api.now.sh/api/countries'
+  const {
+    data: countryData,
+    loading: countryLoading,
+    error: countryError
+  } = useData('https://coronavirus-world-api.now.sh/api/countries');
+  
+  const { data: worldData, loading: worldLoading, error: worldError } = useData(
+    'https://coronavirus-world-api.now.sh/api/world'
   );
 
-  if (error) return <p style={{ color: '#fff' }}>Error...</p>;
-  // TODO: pass this data into the map component as well (don't have to get it twice)
-  if (loading) return <Loading></Loading>;
+  if (countryError) return <p style={{ color: '#fff' }}>Error...</p>;
+  if (worldError) return <p style={{ color: '#fff' }}>Error...</p>;
+  if (countryLoading) return <Loading></Loading>;
+  if (worldLoading) return <Loading></Loading>;
 
   return (
     <WorldContainer>
       <h2 className="title">Worldwide</h2>
-      <Stats url="https://covid19.mathdro.id/api"></Stats>
+      <Stats stats={worldData.recentStats}></Stats>
       <WorldChartsContainer>
         <WorldStatsPieChart
           url="https://covid19.mathdro.id/api/confirmed"
@@ -46,7 +53,7 @@ export default function IndexPage() {
           title="Deceased Breakdown"
         ></WorldStatsPieChart>
       </WorldChartsContainer>
-      <CountriesDatatable data={data.countries}></CountriesDatatable>
+      <CountriesDatatable data={countryData.countries}></CountriesDatatable>
     </WorldContainer>
   );
 }

@@ -2,8 +2,9 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import AsyncSelect from 'react-select/async';
 
-import Loading from '../shared/Loading';
 import useData from '../../utils/useData';
+import Loading from '../shared/Loading';
+import Stats from '../shared/Stats';
 import CountryStats from './CountryStats';
 
 export default function CountrySelector() {
@@ -119,6 +120,7 @@ export default function CountrySelector() {
           }}
         />
       </CountrySelectContainer>
+      {/* <Stats data={data.}></Stats> */}
       <CountryStats
         url={encodeURI(
           `https://coronavirus-world-api.now.sh/api/country/${selectedCountry.code}?detailed=true`

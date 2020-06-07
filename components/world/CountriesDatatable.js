@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import { formatNumber } from '../../helpers';
 
 const TableContainer = styled.div`
   overflow-x: auto;
@@ -149,8 +150,8 @@ const PageNumbers = styled.ul`
 `;
 
 const PageNumber = styled.li`
-  margin-left: 1em;
-  margin-right: 1em;
+  margin-left: 0.75em;
+  margin-right: 0.75em;
   user-select: none;
   cursor: pointer;
   border-bottom: ${props => (props.isActive ? '1px solid var(--white)' : '')};
@@ -177,12 +178,10 @@ const AscendingArrow = () => <span>&#8593;</span>;
 const DescendingArrow = () => <span>&#8595;</span>;
 
 export default function CountriesDatatable({ data }) {
-  // let countries = [...data];
   const [countries, setCountries] = useState(data);
   const { lastUpdated } = countries[0].stats;
-  // const [searchValue, setSearchValue] = useState('');
   const [selectedSort, setSelectedSort] = useState({
-    prop: 'name',
+    prop: 'confirmed',
     direction: 'descending'
   });
   const [pagination, setPagination] = useState({
@@ -366,9 +365,9 @@ export default function CountriesDatatable({ data }) {
                   />
                   <span className="country_name">{val.name}</span>
                 </td>
-                <td>{val.stats.confirmed}</td>
-                <td>{val.stats.deceased}</td>
-                <td>{val.stats.recovered}</td>
+                <td>{formatNumber(val.stats.confirmed)}</td>
+                <td>{formatNumber(val.stats.deceased)}</td>
+                <td>{formatNumber(val.stats.recovered)}</td>
               </tr>
             ))
           )}
